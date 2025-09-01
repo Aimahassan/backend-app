@@ -10,12 +10,16 @@ db.connection.once('open', () => console.log("connected to db")).on("error", (er
 // app.listen(3000,()=>{
 //      console.log("Server is ready to use 3000");
 // })
-app.get('/',(req,res)=>{
-     res.send('server is ready to use')
-})
 
 app.use(cors())
 app.use(express.json())
-app.use('/',router)
 
-export default app
+
+app.get("/",(req,res)=>{
+     res.send('server is ready to use')
+})
+
+
+app.use("/",router)
+
+export default app;
