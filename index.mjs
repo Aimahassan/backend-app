@@ -10,7 +10,7 @@ db.connection.once('open', () => console.log("connected to db")).on("error", (er
 // app.listen(3000,()=>{
 //      console.log("Server is ready to use 3000");
 // })
-app.get((req,res)=>{
+app.get('/',(req,res)=>{
      res.send('server is ready to use')
 })
 
