@@ -16,7 +16,6 @@ app.get("/", (req, res) => {
   res.send("Server is ready to use");
 });
 
-
 app.use("/", router);
 
 export default app;
