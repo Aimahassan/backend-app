@@ -29,7 +29,7 @@ const userScheme = new Schema({
 
 userScheme.pre('save',function(next){
     const user=this
-    //encryption
+//encryption
     if (user.isModified('password')) {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(user.password, salt);
@@ -43,8 +43,8 @@ userScheme.pre('save',function(next){
 userSchema.methods.comparePassword = function (password) {
     const user = this
 
-    //user.password === db password (encrypted) asjdhu2i346193
-    //password === frontend password (normal) 123456
+//user.password === db password (encrypted) asjdhu2i346193
+//password === frontend password (normal) 123456
     console.log('db password', user.password)
     console.log('frontend password', password)
     
@@ -61,3 +61,5 @@ userSchema.methods.generateToken = function() {
 const Users = mongoose.model('user', userScheme);
 
 export default Users
+
+

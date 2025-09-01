@@ -1,5 +1,6 @@
 import express from "express";
 import products from "../models/product.mjs";
+import verifyToken from "../middlewares/vaerifyToken.mjs";
 
 const router=express.Router()
 
@@ -19,7 +20,7 @@ router.get('/:id',async(req,res)=>{
 }
 })
 
-router.post('/post',async(req,res)=>{
+router.post('/post',verifyToken,async(req,res)=>{
     try{
         const postProduct=new products(req.body)
         await products.save() 
