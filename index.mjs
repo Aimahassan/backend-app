@@ -5,21 +5,27 @@ import cors from "cors";
 
 const app = express();
 
-db.connection.once('open', () => console.log("connected to db")).on("error", (err) => console.log("error connecting db -->", err))
+// Database connection
+db.connection
+  .once("open", () => console.log("✅ Connected to DB"))
+  .on("error", (err) => console.error("❌ Error connecting DB -->", err));
 
-// app.listen(3000,()=>{
-//      console.log("Server is ready to use 3000");
-// })
+// Middlewares
+app.use(cors());
+app.use(express.json());
 
-app.use(cors())
-app.use(express.json())
+// Test route
+app.get("/", (req, res) => {
+  res.send("Server is ready to use 🚀");
+});
 
+// Routes
+app.use("/", router);
 
-app.get("/",(req,res)=>{
-     res.send('server is ready to use')
-})
-
-
-app.use("/",router)
+// Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✅ Server is running on port ${PORT}`);
+});
 
 export default app;
