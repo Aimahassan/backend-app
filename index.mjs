@@ -5,26 +5,18 @@ import cors from "cors";
 
 const app = express();
 
-
 db.connection
   .once("open", () => console.log("Connected to DB"))
   .on("error", (err) => console.error("Error connecting DB -->", err));
 
-
 app.use(cors());
 app.use(express.json());
-
 
 app.get("/", (req, res) => {
   res.send("Server is ready to use");
 });
 
+
 app.use("/", router);
-
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
 
 export default app;
